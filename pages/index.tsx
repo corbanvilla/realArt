@@ -1,7 +1,39 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Head from "next/head";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
+// Import the functions you need from the SDKs you need
+import { FirebaseApp, initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 
+import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyBlOka8nYzmYlQ4PPlYYJ59_N4rJAkDXgE",
+  authDomain: "realart-20aab.firebaseapp.com",
+  projectId: "realart-20aab",
+  storageBucket: "realart-20aab.appspot.com",
+  messagingSenderId: "404959848134",
+  appId: "1:404959848134:web:82881ce2d1da87a782d9c7",
+  measurementId: "G-NZD45QBWQL",
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+// const analytics = getAnalytics(app);
+const db = getFirestore(app);
+
+// Get a list of cities from your database
+async function getPaintings(db: any) {
+  const paintingsCol = collection(db, "paintings");
+  const panintingsSnapshot = await getDocs(paintingsCol);
+  const paintingsList = panintingsSnapshot.docs.map((doc) => doc.data());
+  return paintingsList;
+}
+console.log(getPaintings(db));
 export default function Home() {
   return (
     <div className={styles.container}>
@@ -11,61 +43,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.tsx</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
+      <header>
+        <h1>"Real" Art</h1>
+      </header>
     </div>
-  )
+  );
 }
