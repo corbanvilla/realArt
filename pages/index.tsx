@@ -4,6 +4,7 @@ import styles from "../styles/Home.module.css";
 // Import the functions you need from the SDKs you need
 import { FirebaseApp, initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import yogurt from "../public/yogurt.jpg";
 
 import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -36,12 +37,12 @@ async function getPaintings(db: any) {
 
 export default function Home(props: any) {
   return (
-    <div className="container mx-auto mx-[5%] my-[5%] min-h-[32rem] max-h[64rem]">
+    <div className="container mx-[5%] my-[5%] h-3/5">
       {/* Main Grid */}
 
-      <div className="flex-1 grid grid-cols-2 grid-rows-4 gap-x-[20vh] gap-y-[5vh] place-items-center">
+      <div className="pt-[10%] flex-1 grid grid-cols-4 grid-rows-4 gap-x-[10vh] gap-y-[5vh] place-items-center">
         {/* Title / Description */}
-        <div className="col-span-2 row-start-1">
+        <div className="col-span-4 row-start-1">
           <p className="text-4xl text-center">"Real Art"</p>
           <p className="text-1xl text-center">
             One of these is an actual artwork in the Louvre and one of these was
@@ -49,13 +50,13 @@ export default function Home(props: any) {
             <br /> Select the one which you think was done by a real person.
           </p>
         </div>
-        <div className="col-span-1 row-span-3 place-self-end">
+        <div className="col-start-2 col-span-1 row-span-3">
           <div className="relative">
-            <Image fill alt="yogurt" src="/yogurt.jpg" />
+            <Image objectFit="contain" alt="yogurt" src={yogurt} />
           </div>
         </div>
-        <div className="col-span-1 row-span-3 place-self-start">
-          <Image alt="yogurt" width="300" height="300" src="/yogurt.jpg" />
+        <div className="col-start-3 col-span-1 row-span-3">
+          <Image alt="yogurt" src={yogurt} />
         </div>
       </div>
     </div>
