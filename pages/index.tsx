@@ -43,7 +43,7 @@ export default function Home(props: any) {
       <div className="pt-[10%] flex-1 grid grid-cols-4 grid-rows-4 gap-x-[10vh] gap-y-[5vh] place-items-center">
         {/* Title / Description */}
         <div className="col-span-4 row-start-1">
-          <p className="text-4xl text-center">"Real Art"</p>
+          <p className="text-4xl text-center">Real Art</p>
           <p className="text-1xl text-center">
             One of these is an actual artwork in the Louvre and one of these was
             done by Dall-E.
@@ -52,11 +52,23 @@ export default function Home(props: any) {
         </div>
         <div className="col-start-2 col-span-1 row-span-3">
           <div className="relative">
-            <Image objectFit="contain" alt="yogurt" src={yogurt} />
+            <Image
+              objectFit="contain"
+              alt="yogurt"
+              src={props.painting.image1}
+              width="400"
+              height="400"
+            />
           </div>
         </div>
         <div className="col-start-3 col-span-1 row-span-3">
-          <Image alt="yogurt" src={yogurt} />
+          <Image
+            objectFit="contain"
+            width="400"
+            height="400"
+            alt="yogurt"
+            src={props.painting.image2}
+          />
         </div>
       </div>
     </div>
@@ -66,6 +78,7 @@ export default function Home(props: any) {
 export async function getStaticProps() {
   const res: any = await getPaintings(db);
   const painting: any = res[Math.floor(Math.random() * res.length)];
+  // const painting: any = res[0];
   return {
     props: {
       painting,
