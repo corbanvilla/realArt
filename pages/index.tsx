@@ -75,7 +75,7 @@ export default function Home(props: any) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const res: any = await getPaintings(db);
   const painting: any = res[Math.floor(Math.random() * res.length)];
   // const painting: any = res[0];
