@@ -4,9 +4,10 @@ import styles from "../styles/Home.module.css";
 // Import the functions you need from the SDKs you need
 import { FirebaseApp, initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import yogurt from "../public/yogurt.jpg";
 
-import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
+import { getFirestore, collection, getDocs, Firestore, DocumentData } from "firebase/firestore/lite";
+import { InferGetStaticPropsType } from "next";
+import { useState } from "react";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -28,56 +29,92 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 // Get a list of cities from your database
-async function getPaintings(db: any) {
+interface Painting extends DocumentData {
+  image1: string;
+  image2: string;
+  realArt: string;
+  title: string;
+  votes: number;
+}
+
+async function getPaintings(db: Firestore) {
   const paintingsCol = collection(db, "paintings");
-  const panintingsSnapshot = await getDocs(paintingsCol);
-  const paintingsList = panintingsSnapshot.docs.map((doc) => doc.data());
+  const paintingsSnapshot = await getDocs(paintingsCol);
+  const paintingsList = paintingsSnapshot.docs.map((doc) => doc.data()) as Painting[];
   return paintingsList;
 }
 
-export default function Home(props: any) {
-  return (
-    <div className="container mx-[5%] my-[5%] h-3/5">
-      {/* Main Grid */}
+// async function incrementVote(db: Firestore, painting: Painting) {
+//   const 
+// }
 
-      <div className="pt-[10%] flex-1 grid grid-cols-4 grid-rows-4 gap-x-[10vh] gap-y-[5vh] place-items-center">
-        {/* Title / Description */}
-        <div className="col-span-4 row-start-1">
-          <p className="text-4xl text-center">Real Art</p>
-          <p className="text-1xl text-center">
-            One of these is an actual artwork in the Louvre and one of these was
-            done by Dall-E.
-            <br /> Select the one which you think was done by a real person.
-          </p>
+export default function Home({ painting }: InferGetStaticPropsType<typeof getServerSideProps>) {
+
+    const [overlayHidden, setOverlayHidden] = useState(true);
+    const [overlayLeft, setOverlayLeft] = useState(0);
+    const [overlayRight, setOverlayRight] = useState(0);
+
+    const enableOverlayLeft = () => {
+        setOverlayHidden(false);
+        setOverlayLeft(1);
+    }
+
+    const enableOverlayRight = () => {
+        setOverlayHidden(false);
+        setOverlayRight(1);
+    }
+
+    const resetOverlay = () => {
+        setOverlayHidden(true);
+        setOverlayRight(0);
+        setOverlayLeft(0);
+    }
+
+    return (
+        <div className="container w-full min-w-full min-h-full">
+        {/* Main Grid */}
+
+            <div className="flex flex-row min-h-[20vh] items-center place-content-center z-10">
+                <div>
+                
+                <p className="text-4xl text-center">Real Art</p>
+                <p className="text-1xl text-center">
+                    One of these is an actual artwork in the Louvre and one of these was
+                    done by Dall-E.
+                    <br /> Select the one which you think was done by a real person.
+                </p>
+                </div> 
+            </div>
+
+
+            <div className="flex flex-row min-h-[70vh] items-center place-content-center gap-x-16">
+                <div className="hover:border-4 border-gray-100">
+                <div onClick={enableOverlayLeft} style={{ zIndex: overlayLeft }} className="cursor-pointer relative box-border bg-black h-96 w-96 min-h-[380px] min-w-[380px] border-8 border-gray-200">
+                    <Image
+                    fill
+                    alt="yogurt"
+                    src={painting.image1}
+                    />
+                </div>
+                </div>
+                <div className="hover:border-4 border-gray-100">
+                <div onClick={enableOverlayRight} style={{ zIndex: overlayRight }} className="cursor-pointer relative box-border bg-black h-96 w-96 min-h-[380px] min-w-[380px] border-8 border-gray-200 z-50">
+                    <Image
+                        fill
+                        alt="yogurt"
+                        src={painting.image2}
+                    />
+                </div>
+                </div>
+            </div>
+            <div onClick={resetOverlay} hidden={overlayHidden} className="p-20 fixed top-0 left-0 bottom-0 right-0 w-full h-screen bg-black bg-opacity-75"></div>
         </div>
-        <div className="col-start-2 col-span-1 row-span-3">
-          <div className="relative">
-            <Image
-              objectFit="contain"
-              alt="yogurt"
-              src={props.painting.image1}
-              width="400"
-              height="400"
-            />
-          </div>
-        </div>
-        <div className="col-start-3 col-span-1 row-span-3">
-          <Image
-            objectFit="contain"
-            width="400"
-            height="400"
-            alt="yogurt"
-            src={props.painting.image2}
-          />
-        </div>
-      </div>
-    </div>
-  );
+    );
 }
 
 export async function getServerSideProps() {
-  const res: any = await getPaintings(db);
-  const painting: any = res[Math.floor(Math.random() * res.length)];
+  const res = await getPaintings(db);
+  const painting = res[Math.floor(Math.random() * res.length)];
   // const painting: any = res[0];
   return {
     props: {
