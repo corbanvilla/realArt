@@ -175,11 +175,11 @@ export default function Home({
         alt="wave"
         className="absolute inset-0"
         src="/wave.png"
-        height={200}
-        width={200}
+        height={400}
+        width={400}
       ></Image>
       {/* Title Flex Grid */}
-      <div className="flex flex-col flex-row min-h-[20vh] items-center place-content-center z-10">
+      <div className="flex flex-col flex-row min-h-[20vh] items-center place-content-center z-10 p-8">
         <h1 className="text-8xl text-center mb-4">Real Art</h1>
         <h2 className="text-4xl text-center">
           Can you tell apart human and AI-generated art?
