@@ -1,6 +1,7 @@
 import Image from "next/image";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { PaintingVoteResponse } from "./api/vote/[painting]/getvotes";
 
 import {
   getFirestore,
@@ -39,7 +40,6 @@ interface RealArt {
 
 interface Painting {
   url: string;
-
   description: string;
   votes: number;
   type: string;
@@ -89,7 +89,10 @@ export default function Home({
     setShowNextButton(true);
 
     // Update the vote count
-    if (!showNextButton) fetch(`api/vote/${painting.id}/${leftVote}`);
+    if (!showNextButton) { 
+        leftPainting.votes++;
+        fetch(`api/vote/${painting.id}/${leftVote}`);
+    }
   };
 
   // Vote right
@@ -101,7 +104,10 @@ export default function Home({
     setShowNextButton(true);
 
     // Update the vote count
-    if (!showNextButton) fetch(`api/vote/${painting.id}/${rightVote}`);
+    if (!showNextButton) {
+        rightPainting.votes++;   
+        fetch(`api/vote/${painting.id}/${rightVote}`);
+    }
   };
 
   // Disable overlays (left+right)
@@ -134,15 +140,24 @@ export default function Home({
   };
 
   // Iterate to next painting
-  const nextPainting = () => {
+  const nextPainting = async () => {
     // Disable current overlays
     resetOverlay();
     setShowNextButton(false);
 
     // set the next painting
+    const lastPainting = paintingIndex;
     const nextIndex = (paintingIndex + 1) % paintings.length;
     setPainting(paintings[nextIndex]);
     setPaintingIndex(nextIndex);
+
+    // try updating the vote count for our previous painting
+    const vote_req = await fetch(`api/vote/${paintings[lastPainting].id}/getvotes`);
+    if (vote_req.ok) {
+        const votes = await vote_req.json() as PaintingVoteResponse;
+        paintings[lastPainting].real.votes = votes.real;
+        paintings[lastPainting].fake.votes = votes.fake;
+    }
   };
 
   // Calc vote percentages
