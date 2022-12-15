@@ -2,6 +2,7 @@ import Image from "next/image";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { PaintingVoteResponse } from "./api/vote/[painting]/getvotes";
+import Typewriter from "typewriter-effect/dist/core";
 
 import {
   getFirestore,
@@ -167,6 +168,11 @@ export default function Home({
     const totalVotes = painting.real.votes + painting.fake.votes;
     return Math.round((painting.real.votes / totalVotes) * 100);
   };
+
+  new Typewriter("h1", {
+    strings: ["Real Art"],
+    autoStart: true,
+  });
 
   return (
     <div
