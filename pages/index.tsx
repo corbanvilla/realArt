@@ -89,9 +89,9 @@ export default function Home({
     setShowNextButton(true);
 
     // Update the vote count
-    if (!showNextButton) { 
-        leftPainting.votes++;
-        fetch(`api/vote/${painting.id}/${leftVote}`);
+    if (!showNextButton) {
+      leftPainting.votes++;
+      fetch(`api/vote/${painting.id}/${leftVote}`);
     }
   };
 
@@ -105,8 +105,8 @@ export default function Home({
 
     // Update the vote count
     if (!showNextButton) {
-        rightPainting.votes++;   
-        fetch(`api/vote/${painting.id}/${rightVote}`);
+      rightPainting.votes++;
+      fetch(`api/vote/${painting.id}/${rightVote}`);
     }
   };
 
@@ -152,11 +152,13 @@ export default function Home({
     setPaintingIndex(nextIndex);
 
     // try updating the vote count for our previous painting
-    const vote_req = await fetch(`api/vote/${paintings[lastPainting].id}/getvotes`);
+    const vote_req = await fetch(
+      `api/vote/${paintings[lastPainting].id}/getvotes`
+    );
     if (vote_req.ok) {
-        const votes = await vote_req.json() as PaintingVoteResponse;
-        paintings[lastPainting].real.votes = votes.real;
-        paintings[lastPainting].fake.votes = votes.fake;
+      const votes = (await vote_req.json()) as PaintingVoteResponse;
+      paintings[lastPainting].real.votes = votes.real;
+      paintings[lastPainting].fake.votes = votes.fake;
     }
   };
 
@@ -167,95 +169,108 @@ export default function Home({
   };
 
   return (
-    <div className="container w-full min-w-full min-h-full">
+    <div className="container flex items-center place-content-center w-full min-h-screen min-w-screen p-8">
       {/* Main Grid */}
-
+      <Image
+        alt="wave"
+        className="absolute inset-0"
+        src="/wave.png"
+        height={200}
+        width={200}
+      ></Image>
       {/* Title Flex Grid */}
-      <div className="flex flex-row min-h-[20vh] items-center place-content-center z-10">
-        <div>
-          <p className="text-4xl text-center">Real Art</p>
-          <p className="text-1xl text-center">
-            One of these is an actual artwork in the Louvre Abu Dhabi and one of
-            these was created by Dall-E (An AI art generator).
-            <br /> Click the one which you think was done by a real person.
-          </p>
-        </div>
+      <div className="flex flex-col flex-row min-h-[20vh] items-center place-content-center z-10">
+        <h1 className="text-8xl text-center mb-4">Real Art</h1>
+        <h2 className="text-4xl text-center">
+          Can you tell apart human and AI-generated art?
+        </h2>
       </div>
 
       {/* Flex Grid - Overall */}
-      <div className="flex flex-row min-h-[70vh] items-center place-content-center gap-x-16 lg:gap-x-8 xl:gap-x-16">
-        {/* Left Card */}
-        <div
-          style={{ zIndex: overlayLeft }}
-          onClick={enableOverlayLeft}
-          className="flip-card cursor-pointer h-96 w-96 min-h-[380px] min-w-[380px]"
-        >
+      <div className="flex flex-col min-h-[70vh] items-center place-content-center">
+        <p className="text-2xl text-center">
+          One of these is an actual artwork in the Louvre Abu Dhabi and one of
+          these was created by Dall-E 2 (An artifical intelligence art
+          generator)
+        </p>
+        <p className="text-2xl text-center font-bold">
+          Click on the one which you think is in the Louvre Abu Dhabi currently
+        </p>
+        <div className="flex mt-8">
+          {/* Left Card */}
           <div
-            className={"flip-card-inner" + (overlayLeft == 1 ? " do-flip" : "")}
+            style={{ zIndex: overlayLeft }}
+            onClick={enableOverlayLeft}
+            className="flip-card cursor-pointer h-96 w-96 min-h-[384px] min-w-[384px] mx-4"
           >
-            {/* Front Side */}
-            <div className="flip-card-front border-8 border-gray-200">
-              <Image
-                fill
-                alt={leftPainting.description}
-                src={leftPainting.url}
-              />
-            </div>
-            {/* Back Side */}
-            <div className="flip-card-back bg-gray-200">
-              <div className="p-8">
-                <p className="text-4xl pb-6 text-center">
-                  {leftPainting.type == "fake" ? "AI Generated" : "Real Art"}
-                </p>
-                <p className="px-4">
-                  {" "}
-                  {leftPainting.type == "fake"
-                    ? "This painting was generated with the following prompt"
-                    : "This is a real painting in the Louvre Abu Dhabi"}
-                </p>
-                <br></br>
-                <div className="mx-2 bg-gray-300 p-6">
-                  <p>{leftPainting.description}</p>
+            <div
+              className={
+                "flip-card-inner" + (overlayLeft == 1 ? " do-flip" : "")
+              }
+            >
+              {/* Front Side */}
+              <div className="flip-card-front border-8 border-gray-200">
+                <Image
+                  fill
+                  alt={leftPainting.description}
+                  src={leftPainting.url}
+                />
+              </div>
+              {/* Back Side */}
+              <div className="flip-card-back bg-gray-200">
+                <div className="p-8">
+                  <p className="text-4xl pb-6 text-center">
+                    {leftPainting.type == "fake" ? "AI Generated" : "Real Art"}
+                  </p>
+                  <p className="px-4">
+                    {" "}
+                    {leftPainting.type == "fake"
+                      ? "This painting was generated with the following prompt"
+                      : "This is a real painting in the Louvre Abu Dhabi"}
+                  </p>
+                  <br></br>
+                  <div className="mx-2 bg-gray-300 p-6">
+                    <p>{leftPainting.description}</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Right Card */}
-        <div
-          style={{ zIndex: overlayRight }}
-          onClick={enableOverlayRight}
-          className="flip-card cursor-pointer h-96 w-96 min-h-[380px] min-w-[380px]"
-        >
+          {/* Right Card */}
           <div
-            className={
-              "flip-card-inner" + (overlayRight == 1 ? " do-flip" : "")
-            }
+            style={{ zIndex: overlayRight }}
+            onClick={enableOverlayRight}
+            className="flip-card cursor-pointer h-96 w-96 min-h-[384px] min-w-[384px] mx-4"
           >
-            {/* Front Side */}
-            <div className="flip-card-front border-8 border-gray-200">
-              <Image
-                fill
-                alt={rightPainting.description}
-                src={rightPainting.url}
-              />
-            </div>
-            {/* Back Side */}
-            <div className="flip-card-back bg-gray-200">
-              <div className="p-8">
-                <p className="text-4xl pb-6 text-center">
-                  {rightPainting.type == "fake" ? "AI Generated" : "Real Art"}
-                </p>
-                <p className="px-4">
-                  {" "}
-                  {rightPainting.type == "fake"
-                    ? "This painting was generated with the following prompt"
-                    : "This is a real painting in the Louvre Abu Dhabi"}
-                </p>
-                <br></br>
-                <div className="mx-2 bg-gray-300 p-6">
-                  <p>{rightPainting.description}</p>
+            <div
+              className={
+                "flip-card-inner" + (overlayRight == 1 ? " do-flip" : "")
+              }
+            >
+              {/* Front Side */}
+              <div className="flip-card-front border-8 border-gray-200">
+                <Image
+                  fill
+                  alt={rightPainting.description}
+                  src={rightPainting.url}
+                />
+              </div>
+              {/* Back Side */}
+              <div className="flip-card-back bg-gray-200">
+                <div className="p-8">
+                  <p className="text-4xl pb-6 text-center">
+                    {rightPainting.type == "fake" ? "AI Generated" : "Real Art"}
+                  </p>
+                  <p className="px-4">
+                    {" "}
+                    {rightPainting.type == "fake"
+                      ? "This painting was generated with the following prompt"
+                      : "This is a real painting in the Louvre Abu Dhabi"}
+                  </p>
+                  <br></br>
+                  <div className="mx-2 bg-gray-300 p-6">
+                    <p>{rightPainting.description}</p>
+                  </div>
                 </div>
               </div>
             </div>
