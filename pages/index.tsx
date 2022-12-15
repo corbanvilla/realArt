@@ -169,7 +169,7 @@ export default function Home({
   };
 
   return (
-    <div className="container flex items-center place-content-center w-full min-h-screen min-w-screen p-8">
+    <div className="container flex items-center place-content-center w-screen min-h-screen p-8">
       {/* Main Grid */}
       <Image
         alt="wave"
