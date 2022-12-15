@@ -169,7 +169,10 @@ export default function Home({
   };
 
   return (
-    <div className="flex items-center place-content-center w-screen min-h-screen p-8">
+    <div
+      style={showNextButton ? { width: "89vw" } : { width: "100vw" }}
+      className="flex items-center place-content-center min-h-screen p-8"
+    >
       {/* Main Grid */}
       <Image
         alt="wave"
@@ -182,7 +185,7 @@ export default function Home({
       <div className="flex flex-col flex-row min-h-[20vh] items-center place-content-center z-10 p-8">
         <h1 className="text-8xl text-center mb-4">Real Art</h1>
         <h2 className="text-4xl text-center">
-          Can you tell apart human and AI-generated art?
+          Can you tell human and AI-generated art apart?
         </h2>
       </div>
 
@@ -217,19 +220,19 @@ export default function Home({
                 />
               </div>
               {/* Back Side */}
-              <div className="flip-card-back bg-gray-200">
+              <div className="flip-card-back flex flex-row place-items-center bg-gray-200">
                 <div className="p-8">
-                  <p className="text-4xl pb-6 text-center">
+                  <h2 className="text-4xl pb-6 text-center text-bold">
                     {leftPainting.type == "fake" ? "AI Generated" : "Real Art"}
-                  </p>
-                  <p className="px-4">
+                  </h2>
+                  <p className="px-4 text-center">
                     {" "}
                     {leftPainting.type == "fake"
                       ? "This painting was generated with the following prompt"
                       : "This is a real painting in the Louvre Abu Dhabi"}
                   </p>
                   <br></br>
-                  <div className="mx-2 bg-gray-300 p-6">
+                  <div className="mx-2 bg-gray-300 p-6 text-center">
                     <p>{leftPainting.description}</p>
                   </div>
                 </div>
@@ -256,19 +259,19 @@ export default function Home({
                 />
               </div>
               {/* Back Side */}
-              <div className="flip-card-back bg-gray-200">
+              <div className="flip-card-back flex flex-row place-item-center bg-gray-200">
                 <div className="p-8">
-                  <p className="text-4xl pb-6 text-center">
+                  <h2 className="text-4xl pb-6 text-center text-bold">
                     {rightPainting.type == "fake" ? "AI Generated" : "Real Art"}
-                  </p>
-                  <p className="px-4">
+                  </h2>
+                  <p className="px-4 text-center">
                     {" "}
                     {rightPainting.type == "fake"
                       ? "This painting was generated with the following prompt"
                       : "This is a real painting in the Louvre Abu Dhabi"}
                   </p>
                   <br></br>
-                  <div className="mx-2 bg-gray-300 p-6">
+                  <div className="mx-2 bg-gray-300 p-6  text-center">
                     <p>{rightPainting.description}</p>
                   </div>
                 </div>
@@ -305,7 +308,10 @@ export default function Home({
           className="h-full bg-green-500"
           style={{ width: `${calcVotePercentage()}%` }}
         >
-          <p className="text-white px-4 py-2" style={{ whiteSpace: "nowrap" }}>
+          <p
+            className="text-white text-2xl px-4 py-2"
+            style={{ whiteSpace: "nowrap" }}
+          >
             {painting.real.votes} out of{" "}
             {painting.real.votes + painting.fake.votes} votes were correct!
           </p>
