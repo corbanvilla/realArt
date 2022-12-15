@@ -227,7 +227,7 @@ export default function Home({
                 />
               </div>
               {/* Back Side */}
-              <div className="flip-card-back flex flex-row place-items-center bg-gray-200">
+              <div className="flip-card-back flex flex-row place-items-center bg-gray-200 w-full">
                 <div className="p-8">
                   <h2 className="text-4xl pb-6 text-center font-bold">
                     {leftPainting.type == "fake" ? "AI Generated" : "Real Art"}
@@ -266,7 +266,7 @@ export default function Home({
                 />
               </div>
               {/* Back Side */}
-              <div className="flip-card-back flex flex-row place-item-center bg-gray-200">
+              <div className="flip-card-back flex flex-row place-items-center bg-gray-200 w-full">
                 <div className="p-8">
                   <h2 className="text-4xl pb-6 text-center font-bold">
                     {rightPainting.type == "fake" ? "AI Generated" : "Real Art"}
