@@ -188,7 +188,7 @@ export default function Home({
 
       {/* Flex Grid - Overall */}
       <div className="flex flex-col min-h-[70vh] items-center place-content-center">
-        <p className="text-2xl text-center">
+        <p className="text-2xl text-center pb-4">
           One of these is an actual artwork in the Louvre Abu Dhabi and one of
           these was created by Dall-E 2 (An artifical intelligence art
           generator)
