@@ -2,8 +2,7 @@ import Image from "next/image";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { PaintingVoteResponse } from "./api/vote/[painting]/getvotes";
-import Typewriter from "typewriter-effect/dist/core";
-
+import Typewriter from "typewriter-effect";
 import {
   getFirestore,
   collection,
@@ -169,11 +168,6 @@ export default function Home({
     return Math.round((painting.real.votes / totalVotes) * 100);
   };
 
-  new Typewriter("h1", {
-    strings: ["Real Art"],
-    autoStart: true,
-  });
-
   return (
     <div
       style={showNextButton ? { width: "89vw" } : { width: "100vw" }}
@@ -189,7 +183,14 @@ export default function Home({
       ></Image>
       {/* Title Flex Grid */}
       <div className="flex flex-col flex-row min-h-[20vh] items-center place-content-center z-10 p-8">
-        <h1 className="text-8xl text-center mb-4">Real Art</h1>
+        {/* <h1 className="text-8xl text-center mb-4">Real Art</h1> */}
+        <Typewriter
+          options={{
+            strings: ['<h1 class="text-8xl text-center mb-4">Real Art</h1>'],
+            autoStart: true,
+            loop: true,
+          }}
+        />
         <h2 className="text-4xl text-center">
           Can you tell human and AI-generated art apart?
         </h2>
