@@ -229,17 +229,17 @@ export default function Home({
               {/* Back Side */}
               <div className="flip-card-back flex flex-row place-items-center bg-gray-200">
                 <div className="p-8">
-                  <h2 className="text-4xl pb-6 text-center text-bold">
+                  <h2 className="text-4xl pb-6 text-center font-bold">
                     {leftPainting.type == "fake" ? "AI Generated" : "Real Art"}
                   </h2>
-                  <p className="px-4 text-center">
+                  <p className="text-2xl px-4 text-center">
                     {" "}
                     {leftPainting.type == "fake"
                       ? "This painting was generated with the following prompt"
                       : "This is a real painting in the Louvre Abu Dhabi"}
                   </p>
                   <br></br>
-                  <div className="mx-2 bg-gray-300 p-6 text-center">
+                  <div className="text-2xl mx-2 bg-gray-300 p-6 text-center">
                     <p>{leftPainting.description}</p>
                   </div>
                 </div>
@@ -268,17 +268,17 @@ export default function Home({
               {/* Back Side */}
               <div className="flip-card-back flex flex-row place-item-center bg-gray-200">
                 <div className="p-8">
-                  <h2 className="text-4xl pb-6 text-center text-bold">
+                  <h2 className="text-4xl pb-6 text-center font-bold">
                     {rightPainting.type == "fake" ? "AI Generated" : "Real Art"}
                   </h2>
-                  <p className="px-4 text-center">
+                  <p className="text-2xl px-4 text-center">
                     {" "}
                     {rightPainting.type == "fake"
                       ? "This painting was generated with the following prompt"
                       : "This is a real painting in the Louvre Abu Dhabi"}
                   </p>
                   <br></br>
-                  <div className="mx-2 bg-gray-300 p-6  text-center">
+                  <div className="text-2xl mx-2 bg-gray-300 p-6 text-center">
                     <p>{rightPainting.description}</p>
                   </div>
                 </div>
