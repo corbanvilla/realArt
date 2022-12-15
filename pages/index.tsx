@@ -160,9 +160,9 @@ export default function Home({
         <div>
           <p className="text-4xl text-center">Real Art</p>
           <p className="text-1xl text-center">
-            One of these is an actual artwork in the Louvre and one of these was
-            done by Dall-E.
-            <br /> Select the one which you think was done by a real person.
+            One of these is an actual artwork in the Louvre Abu Dhabi and one of
+            these was created by Dall-E (An AI art generator).
+            <br /> Click the one which you think was done by a real person.
           </p>
         </div>
       </div>
@@ -180,7 +180,11 @@ export default function Home({
           >
             {/* Front Side */}
             <div className="flip-card-front border-8 border-gray-200">
-              <Image fill alt="yogurt" src={leftPainting.url} />
+              <Image
+                fill
+                alt={leftPainting.description}
+                src={leftPainting.url}
+              />
             </div>
             {/* Back Side */}
             <div className="flip-card-back bg-gray-200">
@@ -216,7 +220,11 @@ export default function Home({
           >
             {/* Front Side */}
             <div className="flip-card-front border-8 border-gray-200">
-              <Image fill alt="yogurt" src={rightPainting.url} />
+              <Image
+                fill
+                alt={rightPainting.description}
+                src={rightPainting.url}
+              />
             </div>
             {/* Back Side */}
             <div className="flip-card-back bg-gray-200">
