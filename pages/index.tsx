@@ -201,7 +201,7 @@ export default function Home({
           <div
             style={{ zIndex: overlayLeft }}
             onClick={enableOverlayLeft}
-            className="flip-card cursor-pointer h-96 w-96 xl:h-120 xl:w-120 mx-4"
+            className="flip-card cursor-pointer  mx-4"
           >
             <div
               className={
@@ -240,7 +240,7 @@ export default function Home({
           <div
             style={{ zIndex: overlayRight }}
             onClick={enableOverlayRight}
-            className="flip-card cursor-pointer h-96 w-96 min-h-[384px] min-w-[384px] mx-4"
+            className="flip-card cursor-pointer mx-4"
           >
             <div
               className={
