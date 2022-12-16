@@ -194,7 +194,7 @@ export default function Home({
           }}
         />
         <h2 className="text-xl xl:text-4xl text-center">
-          Can you tell human and AI-generated art apart?
+          Can you tell human and computer-generated art apart?
         </h2>
       </div>
 
