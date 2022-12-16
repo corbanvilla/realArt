@@ -187,25 +187,25 @@ export default function Home({
         <Typewriter
           options={{
             strings: [
-              '<h1 class="text-5xl xl:text-8xl text-center mb-4">Real Art</h1>',
+              '<h1 class="text-4xl xl:text-8xl text-center mb-4">Real Art</h1>',
             ],
             autoStart: true,
             loop: true,
           }}
         />
-        <h2 className="text-2xl xl:text-4xl text-center">
+        <h2 className="text-xl xl:text-4xl text-center">
           Can you tell human and AI-generated art apart?
         </h2>
       </div>
 
       {/* Flex Grid - Overall */}
-      <div className="flex flex-col min-h-[70vh] items-center place-content-center">
-        <p className="text-xl xl:text-2xl text-center pb-4">
+      <div className="flex flex-col min-h-[70vh] items-center place-content-start xl:place-content-center">
+        <p className="text-lg xl:text-2xl text-center pb-4">
           One of these is an actual artwork in the Louvre Abu Dhabi and one of
           these was created by Dall-E 2 (An artifical intelligence art
           generator)
         </p>
-        <p className="text-xl xl:text-2xl text-center font-bold">
+        <p className="text-lg xl:text-2xl text-center font-bold">
           Click on the one which you think is in the Louvre Abu Dhabi currently
         </p>
         <div className="flex mt-8">
@@ -231,17 +231,17 @@ export default function Home({
               {/* Back Side */}
               <div className="flip-card-back flex flex-row place-items-center bg-gray-200 w-full">
                 <div className="p-8">
-                  <h2 className="text-2xl xl:text-4xl pb-6 text-center font-bold">
+                  <h2 className="text-xl xl:text-4xl pb-6 text-center font-bold">
                     {leftPainting.type == "fake" ? "AI Generated" : "Real Art"}
                   </h2>
-                  <p className="text-xl xl:text-2xl px-4 text-center">
+                  <p className="text-md xl:text-2xl px-4 text-center">
                     {" "}
                     {leftPainting.type == "fake"
                       ? "This painting was generated with the following prompt"
                       : "This is a real painting in the Louvre Abu Dhabi"}
                   </p>
                   <br></br>
-                  <div className="text-xl xl:text-2xl mx-2 bg-gray-300 p-6 text-center">
+                  <div className="text-md xl:text-2xl mx-2 bg-gray-300 p-6 text-center">
                     <p>{leftPainting.description}</p>
                   </div>
                 </div>
@@ -270,17 +270,17 @@ export default function Home({
               {/* Back Side */}
               <div className="flip-card-back flex flex-row place-items-center bg-gray-200 w-full">
                 <div className="p-8">
-                  <h2 className="text-2xl xl:text-4xl pb-6 text-center font-bold">
+                  <h2 className="text-xl xl:text-4xl pb-6 text-center font-bold">
                     {rightPainting.type == "fake" ? "AI Generated" : "Real Art"}
                   </h2>
-                  <p className="text-xl xl:text-2xl px-4 text-center">
+                  <p className="text-md xl:text-2xl px-4 text-center">
                     {" "}
                     {rightPainting.type == "fake"
                       ? "This painting was generated with the following prompt"
                       : "This is a real painting in the Louvre Abu Dhabi"}
                   </p>
                   <br></br>
-                  <div className="text-xl xl:text-2xl mx-2 bg-gray-300 p-6 text-center">
+                  <div className="text-md xl:text-2xl mx-2 bg-gray-300 p-6 text-center">
                     <p>{rightPainting.description}</p>
                   </div>
                 </div>
@@ -318,7 +318,7 @@ export default function Home({
           style={{ width: `${calcVotePercentage()}%` }}
         >
           <p
-            className="text-white text-xl xl:text-2xl px-4 py-2"
+            className="text-white text-lg xl:text-2xl px-4 py-2"
             style={{ whiteSpace: "nowrap" }}
           >
             {painting.real.votes} out of{" "}
