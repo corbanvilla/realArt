@@ -230,7 +230,7 @@ export default function Home({
               </div>
               {/* Back Side */}
               <div className="flip-card-back flex flex-row place-items-center bg-gray-200 w-full">
-                <div className="p-8">
+                <div className="p-0 px-2 xl:p-8">
                   <h2 className="text-xl xl:text-4xl pb-6 text-center font-bold">
                     {leftPainting.type == "fake" ? "AI Generated" : "Real Art"}
                   </h2>
@@ -241,7 +241,7 @@ export default function Home({
                       : "This is a real painting in the Louvre Abu Dhabi"}
                   </p>
                   <br></br>
-                  <div className="text-md xl:text-2xl mx-2 bg-gray-300 p-6 text-center">
+                  <div className="text-md xl:text-2xl mx-2 bg-gray-300  p-0 xl:p-6 text-center">
                     <p>{leftPainting.description}</p>
                   </div>
                 </div>
@@ -269,7 +269,7 @@ export default function Home({
               </div>
               {/* Back Side */}
               <div className="flip-card-back flex flex-row place-items-center bg-gray-200 w-full">
-                <div className="p-8">
+                <div className="p-0 px-2 xl:p-8">
                   <h2 className="text-xl xl:text-4xl pb-6 text-center font-bold">
                     {rightPainting.type == "fake" ? "AI Generated" : "Real Art"}
                   </h2>
@@ -280,7 +280,7 @@ export default function Home({
                       : "This is a real painting in the Louvre Abu Dhabi"}
                   </p>
                   <br></br>
-                  <div className="text-md xl:text-2xl mx-2 bg-gray-300 p-6 text-center">
+                  <div className="text-md xl:text-2xl mx-2 bg-gray-300 p-0 xl:p-6 text-center">
                     <p>{rightPainting.description}</p>
                   </div>
                 </div>
