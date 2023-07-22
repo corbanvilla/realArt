@@ -1,35 +1,11 @@
+"use client"
+
 import Image from "next/image";
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { PaintingVoteResponse } from "./api/vote/[painting]/getvotes";
 import Typewriter from "typewriter-effect";
-import {
-  getFirestore,
-  collection,
-  getDocs,
-  Firestore,
-} from "firebase/firestore/lite";
-import { InferGetStaticPropsType } from "next";
 import { useEffect, useState } from "react";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyBlOka8nYzmYlQ4PPlYYJ59_N4rJAkDXgE",
-  authDomain: "realart-20aab.firebaseapp.com",
-  projectId: "realart-20aab",
-  storageBucket: "realart-20aab.appspot.com",
-  messagingSenderId: "404959848134",
-  appId: "1:404959848134:web:82881ce2d1da87a782d9c7",
-  measurementId: "G-NZD45QBWQL",
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
-const db = getFirestore(app);
+import PaintingsDatabase from '../paintings.json';
 
 // Get a list of cities from your database
 interface RealArt {
@@ -45,19 +21,14 @@ interface Painting {
   type: string;
 }
 
-async function getPaintings(db: Firestore) {
-  const paintingsCol = collection(db, "paintings");
-  const paintingsSnapshot = await getDocs(paintingsCol);
-  const paintingsList = paintingsSnapshot.docs.map((doc) => {
-    return { ...doc.data(), id: doc.id };
-  }) as RealArt[];
 
-  return paintingsList;
-}
+export default function Home() {
+  // Get local props
+  const paintings = PaintingsDatabase
+    .map((value) => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value);
 
-export default function Home({
-  paintings,
-}: InferGetStaticPropsType<typeof getServerSideProps>) {
   // enable / disable overlay elements
   const [overlayHidden, setOverlayHidden] = useState(true);
   const [overlayLeft, setOverlayLeft] = useState(0);
@@ -87,12 +58,6 @@ export default function Home({
 
     // Our overlay is now visible, so we can show the next button
     setShowNextButton(true);
-
-    // Update the vote count
-    if (!showNextButton) {
-      leftPainting.votes++;
-      fetch(`api/vote/${painting.id}/${leftVote}`);
-    }
   };
 
   // Vote right
@@ -102,12 +67,6 @@ export default function Home({
 
     // Our overlay is now visible, so we can show the next button
     setShowNextButton(true);
-
-    // Update the vote count
-    if (!showNextButton) {
-      rightPainting.votes++;
-      fetch(`api/vote/${painting.id}/${rightVote}`);
-    }
   };
 
   // Disable overlays (left+right)
@@ -150,16 +109,6 @@ export default function Home({
     const nextIndex = (paintingIndex + 1) % paintings.length;
     setPainting(paintings[nextIndex]);
     setPaintingIndex(nextIndex);
-
-    // try updating the vote count for our previous painting
-    const vote_req = await fetch(
-      `api/vote/${paintings[lastPainting].id}/getvotes`
-    );
-    if (vote_req.ok) {
-      const votes = (await vote_req.json()) as PaintingVoteResponse;
-      paintings[lastPainting].real.votes = votes.real;
-      paintings[lastPainting].fake.votes = votes.fake;
-    }
   };
 
   // Calc vote percentages
@@ -328,18 +277,4 @@ export default function Home({
       </div>
     </div>
   );
-}
-
-export async function getServerSideProps() {
-  const res = await getPaintings(db);
-  // Shuffle order
-  const paintings = res
-    .map((value) => ({ value, sort: Math.random() }))
-    .sort((a, b) => a.sort - b.sort)
-    .map(({ value }) => value);
-  return {
-    props: {
-      paintings,
-    },
-  };
 }

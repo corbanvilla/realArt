@@ -1,0 +1,152 @@
+[
+    {
+        "fake": {
+            "url": "/art/abstract2.png",
+            "type": "fake",
+            "description": "\"gestural painting, scribbly white paint lines on dark blue canvas\"",
+            "votes": 73
+        },
+        "real": {
+            "url": "/art/abstract1.png",
+            "type": "real",
+            "description": "Untitled I-IX, 2008, Cy Twombly",
+            "votes": 78
+        },
+        "id": "abstractArt"
+    },
+    {
+        "fake": {
+            "type": "fake",
+            "url": "/art/babel1.png",
+            "description": "\"painting of huge tower of babel in the middle of a lake, hills in the background, road in front with a lot of merchants and camels\"",
+            "votes": 45
+        },
+        "real": {
+            "type": "real",
+            "url": "/art/babel2.jpg",
+            "description": "Tower of Babel, 1595, Abel Grimmer",
+            "votes": 99
+        },
+        "id": "babel"
+    },
+    {
+        "fake": {
+            "type": "fake",
+            "url": "/art/buddha1.png",
+            "description": "\"sculpture of buddha head floating on a black background\"",
+            "votes": 37
+        },
+        "real": {
+            "type": "real",
+            "url": "/art/buddha2.png",
+            "description": "Buddha Head, 5th century",
+            "votes": 123
+        },
+        "id": "buddha"
+    },
+    {
+        "fake": {
+            "url": "/art/childrenByRiver2.png",
+            "description": "“an impressionist oil painting of children wrestling by a river”",
+            "type": "fake",
+            "votes": 78
+        },
+        "real": {
+            "url": "/art/childrenByRiver1.png",
+            "type": "real",
+            "description": "Children Wrestling, 1887, Paul Gauguin",
+            "votes": 77
+        },
+        "id": "childrenByRiver"
+    },
+    {
+        "real": {
+            "type": "real",
+            "url": "/art/frenchStreet2.png",
+            "description": "The Boulevards of Paris, May 1843, William Henry Fox Talbot",
+            "votes": 99
+        },
+        "fake": {
+            "type": "fake",
+            "url": "/art/frenchStreet1.png",
+            "description": "“Photograph of a mid 19th century Parisian street”",
+            "votes": 57
+        },
+        "id": "frenchStreet"
+    },
+    {
+        "fake": {
+            "type": "fake",
+            "url": "/art/glass2.png",
+            "description": "\"huge glass painting depicting multiple scenes from the Medieval era in a circle, surrounded by colorful patterns\"",
+            "votes": 41
+        },
+        "real": {
+            "type": "real",
+            "url": "/art/glass1.png",
+            "description": "Scenes from the life of St Nicasius, France, 1200 - 1225",
+            "votes": 115
+        },
+        "id": "glass"
+    },
+    {
+        "fake": {
+            "type": "fake",
+            "url": "/art/mondrian2.png",
+            "description": "\"blue, white, yellow and black rectangles of different size, painting\"",
+            "votes": 65
+        },
+        "real": {
+            "type": "real",
+            "url": "/art/mondrian1.jpeg",
+            "description": "\"Composition with Blue, Red, Yellow and Black\", 1922, Piet Mondrian",
+            "votes": 96
+        },
+        "id": "mondrian"
+    },
+    {
+        "real": {
+            "url": "/art/Japan1.jpeg",
+            "type": "real",
+            "description": "Asuka Hill in the Eastern Capital, from the series Thirty-Six Views of Mount Fuji, 1858, Utagawa Hiroshige",
+            "votes": 102
+        },
+        "fake": {
+            "url": "/art/Japan2.png",
+            "type": "fake",
+            "description": "“a painting by Utagawa Hiroshige”",
+            "votes": 52
+        },
+        "id": "mountFuji"
+    },
+    {
+        "fake": {
+            "type": "fake",
+            "url": "/art/rooster2.png",
+            "description": "\"Ewer with the head of a rooster\"",
+            "votes": 56
+        },
+        "real": {
+            "description": "\"Rooster-headed Ewer, 12th-13th century\"",
+            "type": "real",
+            "url": "/art/rooster-1-updated.png",
+            "votes": 91
+        },
+        "id": "rooster"
+    },
+    {
+        "fake": {
+            "type": "fake",
+            "url": "/art/warTapestry1.png",
+            "description": "\"tapestry depicting a scene of medieval European war\"",
+            "votes": 56
+        },
+        "real": {
+            "type": "real",
+            "description": "Hunting Scene Illustrating the Month of September (The Hunts of Maximilian), between 1665 and 1673",
+            "url": "/art/warTapestry2.png",
+            "votes": 101
+        },
+        "id": "warTapestry"
+    }
+]
